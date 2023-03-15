@@ -1,3 +1,7 @@
+"use strict";
+
+const galleryEl = document.querySelector(".gallery");
+
 const images = [
   {
     url: 'https://images.pexels.com/photos/140134/pexels-photo-140134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
@@ -12,3 +16,13 @@ const images = [
     alt: 'Group of Horses Running',
   },
 ];
+
+const createGalleryList = ({ url, alt }) =>
+  `<li><img src="${url}" alt="${alt}" width = 150 height = 150></li>`;
+const galleryImg = images.reduce(
+  (acc, item) => acc + createGalleryList(item),
+  ""
+);
+
+galleryEl.insertAdjacentHTML("afterbegin", galleryImg);
+galleryEl.setAttribute("style", "list-style-type:none; display: flex; gap: 15px");
